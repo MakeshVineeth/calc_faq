@@ -1,0 +1,104 @@
+body,
+a,
+input,
+h2,
+p,
+button,
+iframe {
+  font-family: "Segoe UI Semibold";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 5px;
+  font-size: 16px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 100%;
+}
+
+a {
+  padding: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  display: inline;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+}
+
+.card_b {
+  color: black;
+}
+
+.darkbluefg {
+  color: darkblue;
+}
+
+.button_c {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: white;
+  margin: 10px;
+  border: none;
+}
+
+.button_c:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 12px;
+  display: block;
+  margin-bottom: 1vw;
+}
+
+.card_tip {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 12px;
+  display: none;
+  margin-top: 5px;
+  color: blue;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.text-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 15px;
+  padding: 20px;
+  border: none;
+  width: 60%;
+}
+
+.text-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card_frame {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 12px;
+  display: block;
+  width: 90%;
+  display: none;
+}

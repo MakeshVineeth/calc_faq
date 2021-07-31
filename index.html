@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator Lite: FAQ</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <h2 style="text-align: center; margin-bottom: 20px">
+      Calculator Lite: FAQ
+    </h2>
+    <center>
+      <input
+        class="text-card"
+        id="search"
+        type="text"
+        placeholder="Type here to Search.."
+        onPaste="pasted(this)"
+      />
+      <button class="button_c" onclick="ResetBtn()">Reset</button>
+    </center>
+    <br />
+
+    <p id="question" class="card_tip"></p>
+    <center>
+      <iframe scrolling="yes" id="theFrame" class="card_frame"></iframe>
+    </center>
+    <!-- <p style="text-align: center; margin-top: 25px">© MakeshTech 2021.</p> -->
+    <script>
+      const data = new Map([
+        [
+          "How to delete Currency Card",
+          "Just swipe on the Card from Right to Left and Press on the Delete icon.",
+        ],
+        [
+          "Edit Title of a History",
+          "Swipe from Right to Left on the History Card and Click on Edit.",
+        ],
+        [
+          "Delete a History Item",
+          "Swipe from Right to Left on the History Card and Click on Delete.",
+        ],
+        [
+          "How to use Trigonometric Functions",
+          "Click on the Upper Arrow (&#8593;) button to switch to Advanced functions.",
+        ],
+        [
+          "How to use Inverse Trigonometric Functions",
+          "Click on INV button while in Advanced Mode to switch to inverse functions.",
+        ],
+        [
+          "How to update Currency Data manually",
+          "Click on Drop Down Arrow icon in Currency Tab and Press Update Now.",
+        ],
+        [
+          "What is Secure Mode",
+          "Enabling the Secure Mode will treat the application as Secure just like Banking apps. This will disable screenshots and screen recording of the app. Depending on the device, Secure Mode will also disable preview of the app in Recent Apps view.",
+        ],
+        [
+          "What is Smart +/- Function ",
+          "This feature will try to inverse the sign of last element in an expression. Depending on the context, it will change the sign. For Example: If expression is 5+(1-6), using this function will change the expression to 5-(1-6) instead. Please do note that this feature is not perfect yet.",
+        ],
+        [
+          "Contact Us",
+          'You can contact us through our Email:<a style="color: blue;" href="mailto:makeshvineeth9@gmail.com">makeshvineeth9@gmail.com</a>or through Twitter @makesh_vineeth.',
+        ],
+        [
+          "How to Export History",
+          "If you're having the PRO version of our app, you can go to History Tab and Click on 3-dot menu > Export. Select a timeline and Click on Save to open the System File dialog. Click on Share to share the file.",
+        ],
+        [
+          "What is our Privacy Policy",
+          'We do not collect or store your data, simple as that. You can find our generalized Privacy Policy at<a style="color: blue;" href="https://makeshvineeth.github.io/privacy_policy/">here</a>.',
+        ],
+        ["What File Format does it export", "Microsoft Excel (.xlsx)"],
+        ["What Technology has been used to make the app", "Flutter 2"],
+        [
+          "How to remove Currency Card Limit",
+          "By default, you can add upto 5 currency cards in Free version. However, if you want to remove that limit, you can purchase the Pro version. We felt that 5 currency cards is enough for normal usage.",
+        ],
+        ["What API is being used", "Frankfurter API (Open-Source)"],
+        [
+          "How to submit Bug Report",
+          'You can submit a bug report by mailing us at<a style="color: blue;" href="mailto:makeshvineeth9@gmail.com">makeshvineeth9@gmail.com</a>(OR) you can also submit the issue on GitHub. Please mention the tag [Calculator Lite] in the subject when you\'re mailing us.',
+        ],
+        [
+          "How to delete all Currency Cards",
+          "Just head over to the Currency Tab, Click on Drop down icon and choose Delete All.",
+        ],
+        [
+          "How to Support Us",
+          "You can support us by donating through in-app purchase available within the app. Or you can also give us a nice review on the Play Store :) Also, if you've liked our app, kindly share with your friends and family.",
+        ],
+        [
+          "How to delete all history",
+          "Go to History Tab, click on the 3-dot Menu and Choose Clear All option.",
+        ],
+        [
+          "How to change country in a Currency Card",
+          "Just click on the country logo and choose your preferred currency in the popup dialog.",
+        ],
+        [
+          "Sometimes value or expression not visible. Why?",
+          "Depending on how big the expression or value is, it might get hidden, try to scroll up/down on the expression/value and check if you can see the rest of the data.",
+        ],
+      ]);
+
+      $(document).ready(function () {
+        Array.from(data.keys()).map((key) => {
+          var htmlItem = "";
+          htmlItem += '<div class="card">';
+          htmlItem += `<a class="card_b" href="#" onclick="displayAnswer('${key}')">`;
+
+          htmlItem += key;
+          htmlItem += "</a>";
+          htmlItem += "</div>";
+
+          $("body").append(htmlItem);
+        });
+      });
+
+      function ResetBtn() {
+        document.getElementById("search").value = "";
+        document.getElementById("question").style.display = "none";
+        document.getElementById("theFrame").style.display = "none";
+        this.myFunction();
+      }
+
+      function displayAnswer(searchTerm) {
+        for (
+          var i = 0;
+          i < document.getElementsByClassName("card").length;
+          i++
+        ) {
+          document.getElementsByClassName("card")[i].style.display = "none";
+        }
+
+        var elem = document.getElementById("question");
+        elem.style.display = "block";
+        elem.innerHTML = searchTerm;
+
+        document.getElementById("theFrame").style.display = "block";
+
+        $("#theFrame")
+          .contents()
+          .find("head")
+          .append(
+            $('<link rel="stylesheet" type="text/css" href="styles.css">')
+          );
+
+        var myFrame = $("#theFrame").contents().find("body");
+        var answer = data.get(searchTerm);
+        myFrame.html(answer);
+      }
+
+      document.getElementById("search").onkeyup = function () {
+        myFunction();
+      };
+
+      function myFunction() {
+        var search_string = document.getElementById("search").value;
+        var matcher = new RegExp(search_string, "gi");
+        for (
+          var i = 0;
+          i < document.getElementsByClassName("card").length;
+          i++
+        ) {
+          if (
+            matcher.test(
+              document.getElementsByClassName("card_b")[i].firstChild.nodeValue
+            )
+          ) {
+            document.getElementsByClassName("card")[i].style.display = "block";
+          } else {
+            document.getElementsByClassName("card")[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
